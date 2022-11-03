@@ -6,10 +6,12 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -42,10 +44,11 @@ public class OrderServiceImpl implements OrderService {
 //    }
 
     //@Autowired // 생성자가 하나일 때는 생략 가능하다.
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+    // Lombok @RequiredArgsConstructor 이 만들어 줌.
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
